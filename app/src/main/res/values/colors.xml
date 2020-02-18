@@ -3,4 +3,17 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    
+    <!-- Basic color palette -->
+    <color name="basicColor">#424242</color>
+    <color name="basicColorLight">#6D6D6D</color>
+    <color name="basicColorDark">#1B1B1B</color>
+
+    <color name="secondaryColor">#3198D2</color>
+    <color name="secondaryColorLight">#70C9FF</color>
+    <color name="secondaryColorDark">#006AA1</color>
+
+    <color name="whiteColor">#FFFFFF</color>
+    <color name="blackColor">#000000</color>
+
 </resources>
