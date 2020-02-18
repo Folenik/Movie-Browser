@@ -6,11 +6,10 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:$toolVersions.android.gradlePlugin"
-
     }
 }
 
@@ -18,7 +17,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
     }
 }
 
