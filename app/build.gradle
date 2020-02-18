@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion toolVersions.android.compileSdk
+    buildToolsVersion toolVersions.android.buildTools
+
+    defaultConfig {
+        applicationId "com.kamilmosz.displaymoviesapp"
+        minSdkVersion toolVersions.android.minSdk
+        targetSdkVersion toolVersions.android.targetSdk
+        versionCode projectVersions.versionCode
+        versionName projectVersions.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        developer {
+            initWith(release)
+            applicationIdSuffix ".dev"
+            debuggable true
+        }
+    }
+
+    dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        implementation "androidx.appcompat:appcompat:$libVersions.appcompat"
+        implementation "androidx.constraintlayout:constraintlayout:$libVersions.constraintlayout"
+        testImplementation "junit:junit:$libVersions.junit"
+        androidTestImplementation "androidx.test.ext:junit:$libVersions.extjunit"
+        androidTestImplementation "androidx.test.espresso:espresso-core:$libVersions.espressocore"
+    }
+}
