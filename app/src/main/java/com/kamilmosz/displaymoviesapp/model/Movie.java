@@ -5,19 +5,29 @@ import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.gson.annotations.SerializedName;
 
 public class Movie {
 
-    @SerializedName("movie_poster")
+    @SerializedName("backdrop_path")
     private String moviePoster;
-    @SerializedName("movie_title")
+    @SerializedName("title")
     private String movieTitle;
-    @SerializedName("movie_description")
+    @SerializedName("overview")
     private String movieDescription;
-    @SerializedName("movie_releasedate")
+    @SerializedName("release_date")
     private String movieReleaseDate;
-    @SerializedName("movie_rate")
+    @SerializedName("vote_average")
     private String movieRate;
+
+    @BindingAdapter({"backdrop_path"})
+    public static void loadImage(AppCompatImageView imageView, String imageURL) {
+        Glide.with(imageView.getContext())
+                .load("https://image.tmdb.org/t/p/w500/"+imageURL)
+                .centerCrop()
+                .into(imageView);
+
+    }
 
     public String getMoviePoster() {
         return moviePoster;
@@ -57,15 +67,5 @@ public class Movie {
 
     public void setMovieRate(String movieRate) {
         this.movieRate = movieRate;
-    }
-
-    @BindingAdapter({"movie_poster"})
-    public static void loadImage(AppCompatImageView imageView, String imageURL) {
-        Glide.with(imageView.getContext())
-                .setDefaultRequestOptions(new RequestOptions()
-                        .circleCrop())
-                .load(imageURL)
-                .into(imageView);
-
     }
 }

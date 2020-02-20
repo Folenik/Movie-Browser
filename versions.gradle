@@ -21,6 +21,9 @@ ext {
             espressocore                  : '3.2.0',
             recyclerview                  : '28.0.0',
             glide                         : '4.11.0',
-            cardview                      : '28.0.0'
+            cardview                      : '28.0.0',
+            retrofit                      : '2.6.0',
+            convertergson                 : '2.4.0',
+            lifecycle                     : '1.1.1'
     ]
 }

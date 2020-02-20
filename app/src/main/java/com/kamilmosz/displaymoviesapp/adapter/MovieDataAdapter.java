@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kamilmosz.displaymoviesapp.R;
-import com.kamilmosz.displaymoviesapp.databinding.MovieLayoutBinding;
+import com.kamilmosz.displaymoviesapp.databinding.MovieListItemBinding;
 import com.kamilmosz.displaymoviesapp.model.Movie;
 
 import java.util.ArrayList;
@@ -20,23 +20,28 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        MovieLayoutBinding movieLayoutBinding =
+        MovieListItemBinding movieListItemBinding =
                 DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.movie_layout, parent, false);
-        return new MovieViewHolder(movieLayoutBinding);
+                        R.layout.movie_list_item, parent, false);
+        return new MovieViewHolder(movieListItemBinding);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie currentMovie = movies.get(position);
-        holder.movieLayoutBinding.setMovie(currentMovie);
+        holder.movieListItemBinding.setMovie(currentMovie);
 
     }
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        if(movies != null) {
+            return movies.size();
+        }
+        else {
+            return 0;
+        }
     }
 
     public void setMovieList(ArrayList<Movie> movies) {
@@ -46,11 +51,11 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
 
-        private MovieLayoutBinding movieLayoutBinding;
+        private MovieListItemBinding movieListItemBinding;
 
-        public MovieViewHolder(@NonNull MovieLayoutBinding movietLayoutBinding) {
-            super(movietLayoutBinding.getRoot());
-            this.movieLayoutBinding = movietLayoutBinding;
+        public MovieViewHolder(@NonNull MovieListItemBinding movietListItemBinding) {
+            super(movietListItemBinding.getRoot());
+            this.movieListItemBinding = movietListItemBinding;
         }
 
     }
