@@ -34,6 +34,14 @@
                 app:layout_constraintTop_toTopOf="parent"
                 bind:backdrop_path="@{movie.moviePoster}" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/movie_favourite"
+                android:layout_width="@dimen/dp_48"
+                android:layout_height="@dimen/dp_48"
+                android:src="@drawable/ic_favorite_border_24dp"
+                app:layout_constraintEnd_toEndOf="@id/movie_image"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/movie_title"
                 android:layout_width="wrap_content"

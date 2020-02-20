@@ -33,7 +33,7 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MovieViewHolder holder, final int position) {
         final boolean isExpanded = position == expandedPosition;
         holder.movieListItemBinding.movieDescription.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
         holder.itemView.setActivated(isExpanded);
@@ -42,6 +42,20 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
             public void onClick(View v) {
                 expandedPosition = isExpanded ? -1 : position;
                 notifyItemChanged(position);
+            }
+        });
+
+        holder.movieListItemBinding.movieFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    if (holder.movieListItemBinding.getMovie().getFavourite() == false) {
+                        holder.movieListItemBinding.getMovie().setFavourite(true);
+                        holder.movieListItemBinding.movieFavourite.setImageResource(R.drawable.ic_favorite_24dp);
+                    } else if (holder.movieListItemBinding.getMovie().getFavourite() == true) {
+                        holder.movieListItemBinding.getMovie().setFavourite(false);
+                        holder.movieListItemBinding.movieFavourite.setImageResource(R.drawable.ic_favorite_border_24dp);
+                    }
             }
         });
 
