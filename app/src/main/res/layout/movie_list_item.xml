@@ -12,28 +12,22 @@
     <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/basicColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        card_view:cardCornerRadius="4dp">
+        card_view:cardCornerRadius="@dimen/dp_4"
+        android:layout_marginBottom="@dimen/dp_8">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideLineHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.45" />
-
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/movie_image"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/wrap_constraint"
-                app:layout_constraintBottom_toBottomOf="@id/guideLineHorizontal"
+                android:layout_height="@dimen/dp_200"
+                android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,28 +39,34 @@
                 android:layout_height="wrap_content"
                 android:text="@{movie.movieTitle}"
                 android:textSize="@dimen/sp_24"
+                android:paddingTop="@dimen/dp_8"
+                android:paddingLeft="@dimen/dp_8"
                 android:textColor="@color/whiteColor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_image" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/movie_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{movie.movieRate}"
-                android:textSize="@dimen/sp_12"
-                android:textColor="@color/whiteColor"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_title" />
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/movie_releasedate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{movie.movieReleaseDate}"
+                android:text="@{`Release date: ` + movie.movieReleaseDate}"
                 android:textSize="@dimen/sp_12"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingBottom="@dimen/dp_4"
                 android:textColor="@color/whiteColor"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movie_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/movie_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`Rate: ` + movie.movieRate}"
+                android:textSize="@dimen/sp_12"
+                android:paddingRight="@dimen/dp_8"
+                android:paddingBottom="@dimen/dp_4"
+                android:textColor="@color/whiteColor"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_title" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -74,6 +74,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{movie.movieDescription}"
+                android:paddingBottom="@dimen/dp_8"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_8"
                 android:textSize="@dimen/sp_18"
                 android:textColor="@color/whiteColor"
                 app:layout_constraintStart_toStartOf="parent"
