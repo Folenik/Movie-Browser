@@ -20,6 +20,8 @@ public class Movie {
     @SerializedName("vote_average")
     private String movieRate;
 
+    private Boolean isFavourite = false;
+
     @BindingAdapter({"backdrop_path"})
     public static void loadImage(AppCompatImageView imageView, String imageURL) {
         Glide.with(imageView.getContext())
@@ -67,5 +69,13 @@ public class Movie {
 
     public void setMovieRate(String movieRate) {
         this.movieRate = movieRate;
+    }
+
+    public Boolean getFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(Boolean favourite) {
+        isFavourite = favourite;
     }
 }

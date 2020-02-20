@@ -19,6 +19,8 @@ public class MovieDBResponse {
     @Expose
     private List<Movie> movie = null;
 
+    private Boolean isFavourite;
+
     public Integer getPage() {
         return page;
     }
@@ -49,6 +51,5 @@ public class MovieDBResponse {
 
     public void setMovie(List<Movie> movie) {
         this.movie = movie;
-
     }
 }
