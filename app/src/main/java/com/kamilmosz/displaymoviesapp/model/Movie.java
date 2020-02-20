@@ -1,4 +1,4 @@
-package com.kamilmosz.displaymoviesapp;
+package com.kamilmosz.displaymoviesapp.model;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.databinding.BindingAdapter;
@@ -18,7 +18,7 @@ public class Movie {
     private String movieReleaseDate;
     @SerializedName("movie_rate")
     private String movieRate;
-    
+
     public String getMoviePoster() {
         return moviePoster;
     }
