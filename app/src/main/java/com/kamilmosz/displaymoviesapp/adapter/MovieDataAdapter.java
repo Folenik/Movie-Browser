@@ -75,18 +75,6 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
 
     }
 
-    public void setMovies(ArrayList<Movie> myMovies) {
-        movies = myMovies;
-        filteredMovies.addAll(movies);
-        notifyDataSetChanged();
-    }
-
-
-    public List<Movie> getMovies() {
-        return filteredMovies;
-    }
-
-
     public Filter getFilter() {
         return new Filter() {
             @Override
@@ -116,7 +104,6 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
             }
         };
     }
-
 
 
 }

@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 movieDataAdapter.getFilter().filter(newText);
