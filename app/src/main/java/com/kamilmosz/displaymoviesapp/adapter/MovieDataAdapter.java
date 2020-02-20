@@ -1,6 +1,8 @@
 package com.kamilmosz.displaymoviesapp.adapter;
 
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.MovieViewHolder> {
 
     private ArrayList<Movie> movies;
+    public int mExpandedPosition = -1;
 
     @NonNull
     @Override
@@ -28,7 +31,18 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MovieViewHolder holder, final int position) {
+        final boolean isExpanded = position==mExpandedPosition;
+        holder.movieListItemBinding.movieDescription.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        holder.itemView.setActivated(isExpanded);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExpandedPosition = isExpanded ? -1:position;
+                notifyItemChanged(position);
+            }
+        });
+
         Movie currentMovie = movies.get(position);
         holder.movieListItemBinding.setMovie(currentMovie);
 
