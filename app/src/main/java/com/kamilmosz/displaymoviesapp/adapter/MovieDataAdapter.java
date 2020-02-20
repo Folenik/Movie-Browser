@@ -1,9 +1,9 @@
 package com.kamilmosz.displaymoviesapp.adapter;
 
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -14,11 +14,13 @@ import com.kamilmosz.displaymoviesapp.databinding.MovieListItemBinding;
 import com.kamilmosz.displaymoviesapp.model.Movie;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.MovieViewHolder> {
 
     private ArrayList<Movie> movies;
-    public int mExpandedPosition = -1;
+    private ArrayList<Movie> filteredMovies = new ArrayList<>();
+    public int expandedPosition = -1;
 
     @NonNull
     @Override
@@ -32,34 +34,33 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, final int position) {
-        final boolean isExpanded = position==mExpandedPosition;
-        holder.movieListItemBinding.movieDescription.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        final boolean isExpanded = position == expandedPosition;
+        holder.movieListItemBinding.movieDescription.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
         holder.itemView.setActivated(isExpanded);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mExpandedPosition = isExpanded ? -1:position;
+                expandedPosition = isExpanded ? -1 : position;
                 notifyItemChanged(position);
             }
         });
 
-        Movie currentMovie = movies.get(position);
+        Movie currentMovie = filteredMovies.get(position);
         holder.movieListItemBinding.setMovie(currentMovie);
-
     }
 
     @Override
     public int getItemCount() {
-        if(movies != null) {
-            return movies.size();
-        }
-        else {
+        if (filteredMovies != null) {
+            return filteredMovies.size();
+        } else {
             return 0;
         }
     }
 
     public void setMovieList(ArrayList<Movie> movies) {
         this.movies = movies;
+        filteredMovies.addAll(movies);
         notifyDataSetChanged();
     }
 
@@ -73,4 +74,49 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
         }
 
     }
+
+    public void setMovies(ArrayList<Movie> myMovies) {
+        movies = myMovies;
+        filteredMovies.addAll(movies);
+        notifyDataSetChanged();
+    }
+
+
+    public List<Movie> getMovies() {
+        return filteredMovies;
+    }
+
+
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                List<Movie> filteredList = new ArrayList<>();
+                if (charString.isEmpty()) {
+                    filteredList = movies;
+                } else {
+                    for (Movie movie : movies) {
+
+                        if (movie.getMovieTitle().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(movie);
+                        }
+                    }
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filteredMovies = (ArrayList<Movie>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+
+
 }
