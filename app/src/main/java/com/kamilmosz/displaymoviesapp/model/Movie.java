@@ -23,7 +23,7 @@ public class Movie {
     @BindingAdapter({"backdrop_path"})
     public static void loadImage(AppCompatImageView imageView, String imageURL) {
         Glide.with(imageView.getContext())
-                .load("https://image.tmdb.org/t/p/w500/"+imageURL)
+                .load("https://image.tmdb.org/t/p/original/"+imageURL)
                 .centerCrop()
                 .into(imageView);
 

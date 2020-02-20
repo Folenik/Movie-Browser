@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/basicColor</item>
         <item name="colorPrimaryDark">@color/basicColorDark</item>
         <item name="colorAccent">@color/secondaryColor</item>
+        <item name="android:windowBackground">@color/basicColorDark</item>
     </style>
 
     <!-- SplashScreen theme. -->
