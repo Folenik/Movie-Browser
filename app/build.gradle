@@ -37,10 +37,5 @@ android {
         implementation "com.squareup.retrofit2:retrofit:$libVersions.retrofit"
         implementation "com.squareup.retrofit2:converter-gson:$libVersions.convertergson"
         implementation "android.arch.lifecycle:extensions:$libVersions.lifecycle"
-        testImplementation "junit:junit:$libVersions.junit"
-        androidTestImplementation "androidx.test.ext:junit:$libVersions.extjunit"
-        androidTestImplementation "androidx.test.espresso:espresso-core:$libVersions.espressocore"
-        annotationProcessor "com.github.bumptech.glide:compiler:$libVersions.glide"
-        annotationProcessor "android.arch.lifecycle:compiler:$libVersions.lifecycle"
     }
 }

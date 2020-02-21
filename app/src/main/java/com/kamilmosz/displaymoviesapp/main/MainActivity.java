@@ -1,10 +1,9 @@
-package com.kamilmosz.displaymoviesapp;
+package com.kamilmosz.displaymoviesapp.main;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.inputmethod.EditorInfo;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kamilmosz.displaymoviesapp.R;
 import com.kamilmosz.displaymoviesapp.adapter.MovieDataAdapter;
 import com.kamilmosz.displaymoviesapp.databinding.ActivityMainBinding;
 import com.kamilmosz.displaymoviesapp.model.Movie;
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MainViewModel mainViewModel;
     private MovieDataAdapter movieDataAdapter;
+    private MenuItem searchItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +63,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
+        searchItem = menu.findItem(R.id.action_search);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+        setupMenuAndImplementSearchMethod();
 
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void setupMenuAndImplementSearchMethod() {
         SearchView searchView = null;
         if (searchItem != null) {
             searchView = (SearchView) searchItem.getActionView();
@@ -81,7 +87,5 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-        return super.onCreateOptionsMenu(menu);
     }
 }
