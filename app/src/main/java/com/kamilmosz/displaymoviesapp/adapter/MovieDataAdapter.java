@@ -29,7 +29,6 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
                 DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                         R.layout.movie_list_item, parent, false);
         return new MovieViewHolder(movieListItemBinding);
-
     }
 
     @Override
@@ -118,6 +117,4 @@ public class MovieDataAdapter extends RecyclerView.Adapter<MovieDataAdapter.Movi
             }
         };
     }
-
-
 }
