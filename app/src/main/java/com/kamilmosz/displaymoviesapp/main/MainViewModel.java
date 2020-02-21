@@ -1,4 +1,4 @@
-package com.kamilmosz.displaymoviesapp;
+package com.kamilmosz.displaymoviesapp.main;
 
 import android.app.Application;
 
